@@ -1,7 +1,11 @@
 name: loading_shake
-description: "A new Flutter package project."
+description: A customizable Flutter loading overlay with background and multiple image layers.
+homepage: https://github.com/tiendev2003/loading_shake
+repository: https://github.com/tiendev2003/loading_shake
+issue_tracker: https://github.com/tiendev2003/loading_shake/issues
+
+
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ^3.6.0

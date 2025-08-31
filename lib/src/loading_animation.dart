@@ -72,8 +72,8 @@ class _LoadingAnimationState extends State<LoadingAnimation>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
-      height: 200,
+      width: widget.size,
+      height: widget.size,
       child: Stack(
         alignment: Alignment.center,
         children: [
