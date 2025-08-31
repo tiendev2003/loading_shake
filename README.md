@@ -34,7 +34,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  loading_overlay_flutter: ^1.0.0
+  loading_overlay_flutter: ^0.0.1
 ```
 
 Run:
