@@ -1,39 +1,127 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+ 
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+````markdown
+# Loading Overlay ✨
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+[![pub package](https://img.shields.io/pub/v/loading_overlay_flutter.svg)](https://pub.dev/packages/loading_overlay_flutter)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A simple yet powerful **loading overlay widget** for Flutter.  
+It allows you to show a **custom loading animation overlay** on top of your app while calling APIs, processing data, or waiting for async operations.
 
-## Features
+👉 The overlay **disappears automatically when you navigate back** (no need to wait until API finishes).  
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+---
 
-## Getting started
+## 🚀 Features
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- Show / hide a fullscreen **loading overlay** easily.
+- Support **custom images** (background + item layers).
+- Support **custom size** for loading widget.
+- Global **config** for default images & size (no need to repeat code).
+- **Extension API** for `BuildContext`:  
+  ```dart
+  context.showLoading();
+  context.hideLoading();
+````
 
-## Usage
+* Works well with **Navigator back** (overlay removed automatically).
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+---
 
-```dart
-const like = 'sample';
+## 📦 Installation
+
+Add to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  loading_overlay_flutter: ^1.0.0
 ```
 
-## Additional information
+Run:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```sh
+flutter pub get
+```
+
+---
+
+## 🔧 Setup
+
+Before using, set **default configuration** (usually in `main.dart`):
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:loading_overlay_flutter/loading_overlay_flutter.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Set global config (images + size)
+  LoadingConfig.setDefaults(
+    backgroundImage: const AssetImage('assets/items/item1.png'),
+    item1Image: const AssetImage('assets/items/item2.png'),
+    item2Image: const AssetImage('assets/items/item3.png'),
+    size: 120, // default size
+  );
+
+  runApp(const MyApp());
+}
+```
+
+---
+
+## 🖼️ Usage
+
+### Basic usage
+
+```dart
+// Show overlay
+LoadingOverlay.show(context);
+
+// Hide overlay
+LoadingOverlay.hide();
+```
+
+### With context extension (recommended)
+
+```dart
+// Show
+context.showLoading();
+
+// Hide
+context.hideLoading();
+```
+
+---
+
+## ⚙️ Custom usage
+
+You can override images or size per call:
+
+```dart
+LoadingOverlay.show(
+  context,
+  background: const AssetImage('assets/custom/bg.png'),
+  item1: const AssetImage('assets/custom/item1.png'),
+  item2: const AssetImage('assets/custom/item2.png'),
+  size: 200,
+);
+```
+
+---
+
+## 🔄 Example
+
+```dart
+ElevatedButton(
+  onPressed: () async {
+    context.showLoading();
+    await Future.delayed(const Duration(seconds: 2)); // fake API
+    context.hideLoading();
+  },
+  child: const Text("Show Loading"),
+);
+```
+
+---
+ 
